@@ -16,7 +16,7 @@
 <meta property="og:description" content="SQLStructured Query Language : 结构化标记语言书写：;分号结束、注释#分类：DDL(操作数据库、表)、DML(增删改表中的数据)、DQL(查询表中的数据)、DCL(授权)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-06T16:26:37.000Z">
-<meta property="article:modified_time" content="2020-03-06T16:59:26.545Z">
+<meta property="article:modified_time" content="2020-03-06T17:28:12.359Z">
 <meta property="article:author" content="兆">
 <meta name="twitter:card" content="summary">
   
@@ -162,6 +162,7 @@
       
         <h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>Structured Query Language : 结构化标记语言<br>书写：;分号结束、注释#<br>分类：DDL(操作数据库、表)、DML(增删改表中的数据)、DQL(查询表中的数据)、DCL(授权)</p>
 <a id="more"></a>
+
 <h3 id="SQL操作"><a href="#SQL操作" class="headerlink" title="SQL操作"></a>SQL操作</h3><h4 id="DDL："><a href="#DDL：" class="headerlink" title="DDL："></a>DDL：</h4><h5 id="操作数据库CRUD"><a href="#操作数据库CRUD" class="headerlink" title="操作数据库CRUD"></a>操作数据库CRUD</h5><p>  1.C(Create创建)：create database if not exists db character set utf8;创建数据库db字符集为utf-8<br>  2.R(Retrieve查询)：show create database 数据库名称; 查询某个数据库的创建语句查字符集<br>  3.U(Update修改)：alter database db character set utf8; 修改字符集<br>  4.D(Delete删除)：drop database 数据库名称；<br>  5.使用数据库：use 数据库名称；  select database()；查询当前使用数据库名称</p>
 <h5 id="操作表"><a href="#操作表" class="headerlink" title="操作表"></a>操作表</h5><p>  1.C(Create创建)：create table 表名(列名1 数据类型1，列名2 数据类型2，… ，列名n 数据类型n)； create table tb1 like tb;复制表<br>  2.R(Retrieve查询)：show tables； 查询表结构:desc 表名；<br>  3.U(Update修改)：修改表名：alter table 表名 rename to 新表名；<br>    添加一列：alter table 表名 add 列名 数据类型；<br>    修改列名类型：alter table 表名 change 列名 新列名 新数据类型；<br>    修改列类型：alter table 表名 modify 列名 新数据类型；<br>    删除列：alter table 表名 drop 列名；<br>  4.D(Delete删除)：drop table if exists 表名;</p>
 <h4 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h4><ul>
@@ -178,8 +179,7 @@
 <li>条件查询：<br>select * from stu where age &gt;= 20 and age &lt;= 30;<br>select * from stu where age between 20 and 30;<br>select * from stu where age = 22 or age = 10 or age = 18;<br>select * from stu where age in (22,10,18);<br>查询成绩为null：查询null不能用=<br>  select * from stu where score is null;<br>like模糊查询：占位符_占一个；%占任意多个可为0；<br>  select * from stu where name like ‘马%’;<br>  select * from stu where name like ‘—‘;查询姓名三个字的</li>
 <li>排序查询：order by 排序字段1 排序方式1，排序字段2 排序方式2<br>排序方式：默认升序ASC，降序DESC</li>
 <li>聚合函数：一列数据作为一个整体，进行纵向计算。<br>count计算个数：select count(ifnull(score,0)) from stu;<br>max(min)计算最大(小)值：sum和，avg平均值<br>注意：排除null值，解决：选择不包含非空的列(如主键)；应用IFNULL</li>
-<li>分组查询：group by 分组字段；having<br>select sex,avg(math),count(id) from stu group by sex;<br>select sex,avg(math),count(id) num from stu where math&gt;70  group by sex having count(id)&gt;2; 其中num为别名<br>注意：<pre><code>1.顺序where，group by，having
-2.where后不能跟聚合函数，而having可以</code></pre></li>
+<li>分组查询：group by 分组字段；having<br>select sex,avg(math),count(id) from stu group by sex;<br>select sex,avg(math),count(id) num from stu where math&gt;70  group by sex having count(id)&gt;2; 其中num为别名<br>注意：1.顺序where，group by，having 2.where后不能跟聚合函数，而having可以</li>
 <li>分页查询limit</li>
 </ul>
 <h3 id="表的约束"><a href="#表的约束" class="headerlink" title="表的约束"></a>表的约束</h3><p>对表的数据进行限定，保证数据的正确性、有效性和完整性。<br>分类：(创建表时添加约束、创表后修改)<br>    1.主键约束：primary key  删除主键：Alter table stu drop primary key;<br>    2.非空约束：not null<br>    3.唯一约束：unique<br>    4.外键约束：foreign key，让表与表之间产生关系；级联<br>      级联语法：alter table 表名 add constraint 外键名称 foreign key (外键字段名称) references 主表名称(主表列名称) on update cascade on delete cascade</p>
@@ -354,9 +354,6 @@
     	<div class="footer-left">
     		&copy; 2020 兆
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
     </div>
   </div>
 </footer>
