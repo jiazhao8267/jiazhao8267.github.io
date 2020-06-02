@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SQL | Zhao_blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQLStructured Query Language : 结构化标记语言书写：;分号结束、注释#分类：DDL(操作数据库、表)、DML(增删改表中的数据)、DQL(查询表中的数据)、DCL(授权)">
+  <meta name="description" content="SQL：Structured Query Language : 结构化标记语言书写：;分号结束、注释#分类：DDL数据定义语言(操作数据库、表)、DML数据操纵语言(增删改表中的数据)、DQL数据查询语言(查询表中的数据)、DCL数据控制语言(授权)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL">
 <meta property="og:url" content="http://yoursite.com/2020/03/07/SQL/index.html">
 <meta property="og:site_name" content="Zhao_blog">
-<meta property="og:description" content="SQLStructured Query Language : 结构化标记语言书写：;分号结束、注释#分类：DDL(操作数据库、表)、DML(增删改表中的数据)、DQL(查询表中的数据)、DCL(授权)">
+<meta property="og:description" content="SQL：Structured Query Language : 结构化标记语言书写：;分号结束、注释#分类：DDL数据定义语言(操作数据库、表)、DML数据操纵语言(增删改表中的数据)、DQL数据查询语言(查询表中的数据)、DCL数据控制语言(授权)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-06T16:26:37.000Z">
-<meta property="article:modified_time" content="2020-06-01T15:36:33.436Z">
+<meta property="article:modified_time" content="2020-06-02T16:44:57.241Z">
 <meta property="article:author" content="兆">
 <meta property="article:tag" content="基础">
 <meta name="twitter:card" content="summary">
@@ -189,61 +189,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>Structured Query Language : 结构化标记语言<br>书写：;分号结束、注释#<br>分类：DDL(操作数据库、表)、DML(增删改表中的数据)、DQL(查询表中的数据)、DCL(授权)</p>
+        <p>SQL：Structured Query Language : 结构化标记语言<br>书写：;分号结束、注释#<br>分类：DDL数据定义语言(操作数据库、表)、DML数据操纵语言(增删改表中的数据)、DQL数据查询语言(查询表中的数据)、DCL数据控制语言(授权)</p>
+<hr>
 <a id="more"></a>
 
 <h3 id="SQL操作"><a href="#SQL操作" class="headerlink" title="SQL操作"></a>SQL操作</h3><h4 id="DDL："><a href="#DDL：" class="headerlink" title="DDL："></a>DDL：</h4><h5 id="操作数据库CRUD"><a href="#操作数据库CRUD" class="headerlink" title="操作数据库CRUD"></a>操作数据库CRUD</h5><p>  1.C(Create创建)：create database if not exists db character set utf8;创建数据库db字符集为utf-8<br>  2.R(Retrieve查询)：show create database 数据库名称; 查询某个数据库的创建语句查字符集<br>  3.U(Update修改)：alter database db character set utf8; 修改字符集<br>  4.D(Delete删除)：drop database 数据库名称；<br>  5.使用数据库：use 数据库名称；  select database()；查询当前使用数据库名称</p>
-<h5 id="操作表"><a href="#操作表" class="headerlink" title="操作表"></a>操作表</h5><p>  1.C(Create创建)：create table 表名(列名1 数据类型1，列名2 数据类型2，… ，列名n 数据类型n)； create table tb1 like tb;复制表<br>  2.R(Retrieve查询)：show tables； 查询表结构:desc 表名；<br>  3.U(Update修改)：修改表名：alter table 表名 rename to 新表名；<br>    添加一列：alter table 表名 add 列名 数据类型；<br>    修改列名类型：alter table 表名 change 列名 新列名 新数据类型；<br>    修改列类型：alter table 表名 modify 列名 新数据类型；<br>    删除列：alter table 表名 drop 列名；<br>  4.D(Delete删除)：drop table if exists 表名;</p>
+<h5 id="操作表"><a href="#操作表" class="headerlink" title="操作表"></a>操作表</h5><p>  1.C(Create创建)：create table <code>表名</code>(<code>列名</code> 数据类型1 NOT NULL PRIMARY KEY，<code>列名2</code> 数据类型2，… ，<code>列名n</code> 数据类型n)； create table tb1 like tb;复制表<br>  2.R(Retrieve查询)：show tables； 查询表结构:desc 表名；<br>  3.U(Update修改)：修改表名：alter table 表名 rename to 新表名；<br>    添加一列：alter table 表名 add 列名 数据类型；<br>    修改列名类型：alter table 表名 change 列名 新列名 新数据类型；<br>    修改列类型：alter table 表名 modify 列名 新数据类型；<br>    删除列：alter table 表名 drop 列名；<br>  4.D(Delete删除)：drop table if exists 表名;</p>
 <h4 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h4><ul>
 <li>添加数据：insert into 表名(列1，列2，…，列n) values(值1，值2，…，值n)；<ul>
-<li>注意事项：出了数字类型其他类型使用引号(单双引号都可)</li>
+<li>注意事项：除了数字类型其他类型使用引号(单双引号都可)</li>
 </ul>
 </li>
-<li>删除数据：TRUNCATE TABLE 表名；删除表所有数据</li>
+<li>删除数据：TRUNCATE TABLE 表名；删除表所有数据<br>Delete 和 Truncate<br>delete from ‘table_name’ where ‘条件’;<br>Truncate清空：truncate ‘table_name’</li>
 <li>修改数据：update 表名 set 列1 = 值1， 列2 = 值2，…；</li>
 </ul>
 <h4 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h4><ul>
-<li>语法：<br>select 字段列表  from 表名列表  where 条件列表  group by 分组字段  having 分组之后的条件  order by 排序  limit 分页限定</li>
-<li>基础查询：<br>去除重复：distinct； 计算列：ifnull(式1，式2)</li>
-<li>条件查询：<br>select * from stu where age &gt;= 20 and age &lt;= 30;<br>select * from stu where age between 20 and 30;<br>select * from stu where age = 22 or age = 10 or age = 18;<br>select * from stu where age in (22,10,18);<br>查询成绩为null：查询null不能用=<br>  select * from stu where score is null;<br>like模糊查询：占位符_占一个；%占任意多个可为0；<br>  select * from stu where name like ‘马%’;<br>  select * from stu where name like ‘—‘;查询姓名三个字的</li>
-<li>排序查询：order by 排序字段1 排序方式1，排序字段2 排序方式2<br>排序方式：默认升序ASC，降序DESC</li>
-<li>聚合函数：一列数据作为一个整体，进行纵向计算。<br>count计算个数：select count(ifnull(score,0)) from stu;<br>max(min)计算最大(小)值：sum和，avg平均值<br>注意：排除null值，解决：选择不包含非空的列(如主键)；应用IFNULL</li>
-<li>分组查询：group by 分组字段；having<br>select sex,avg(math),count(id) from stu group by sex;<br>select sex,avg(math),count(id) num from stu where math&gt;70  group by sex having count(id)&gt;2; 其中num为别名<br>注意：1.顺序where，group by，having 2.where后不能跟聚合函数，而having可以</li>
-<li>分页查询limit</li>
+<li>语法：<br>  select 字段列表  from 表名列表  where 条件列表  group by 分组字段  having 分组之后的条件  order by 排序  limit 分页限定</li>
+<li>基础查询：<br>  去除重复元组：distinct； 计算列：ifnull(式1，式2)</li>
+<li>条件查询：<br>  select * from stu where age &gt;= 20 and age &lt;= 30;<br>  select * from stu where age between 20 and 30;<br>  select * from stu where age = 22 or age = 10 or age = 18;<br>  select * from stu where age in (22,10,18);<br>  查询年龄不为18岁的姓名:<br>  select distinct name from stu where not age=18;<br>  注意1：查询成绩为null：查询null不能用=<pre><code>select * from stu where score is null;</code></pre>  like模糊查询：占位符_占一个；%占任意多个可为0；<pre><code>select * from stu where name like &apos;马%&apos;;
+select * from stu where name like &apos;---&apos;;查询姓名三个字的</code></pre></li>
+<li>排序查询：order by 排序字段1 排序方式1，排序字段2 排序方式2<br>  排序方式：默认升序ASC，降序DESC</li>
+<li>聚合函数：一列数据作为一个整体，进行纵向计算。<br>  count计算个数：select count(ifnull(score,0)) from stu;<br>  max(min)计算最大(小)值：sum和，avg平均值<br>  <strong>注意1</strong>：排除null值，解决：选择不包含非空的列(如主键)；应用IFNULL</li>
+<li>分组查询：group by 分组字段；having<br>  select sex,avg(math),count(id) from stu group by sex;<br>  select sex,avg(math),count(id) num from stu where math&gt;70  group by sex having count(id)&gt;2; 其中num为别名<br>  <strong>注意2</strong>：<pre><code>1.顺序where，group by，having
+2.where后不能跟聚合函数，而having可以
+3.聚合函数一般在select、having后，order by</code></pre></li>
+<li>分页查询limit<br>limit startindex, pageSize</li>
+<li>查询小结<br>select [all | distinct]<br>{* | table.* | [table.field1[as alias1] [,table.filed2[as alias2]]] […]}<br>from table_name [as table_alias]<br>[left | right | inner | jion table_name2]  –联合查询<br>[where …]  –条件<br>[group by …]  –分组<br>[having …]  –分组条件<br>[order by…]  –排序<br>[limit {[offset,] row_count | row_countOffset offset}];  –分页<br>顺序很重要：<br>select 选择是否去重 要查询的字段 from 表（字段和表可以起别名）<br>xxx jion 连接表 on 等值判断<br>where 具体的条件<br>group by 根据字段分组<br>having 分组条件<br>order by 按照字段排序<br>limit stratIndex, pageSize</li>
 </ul>
-<h3 id="表的约束"><a href="#表的约束" class="headerlink" title="表的约束"></a>表的约束</h3><p>对表的数据进行限定，保证数据的正确性、有效性和完整性。<br>分类：(创建表时添加约束、创表后修改)<br>    1.主键约束：primary key  删除主键：Alter table stu drop primary key;<br>    2.非空约束：not null<br>    3.唯一约束：unique<br>    4.外键约束：foreign key，让表与表之间产生关系；级联<br>      级联语法：alter table 表名 add constraint 外键名称 foreign key (外键字段名称) references 主表名称(主表列名称) on update cascade on delete cascade</p>
-<h3 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h3><h4 id="多表之间的关系"><a href="#多表之间的关系" class="headerlink" title="多表之间的关系"></a>多表之间的关系</h4><ul>
-<li>一对一：实现方式：可在任意一方添加外键指向另一方的主键。</li>
-<li>一对多(多对一)：实现：在多的一方建立外键指向一的一方的主键。</li>
-<li>多对多：实现：需要借助第三张中间表，中间表包含两个字段，这两个字段作为第三张表的外键分别指向那两张表的主键。</li>
-</ul>
-<h4 id="数据库设计和范式"><a href="#数据库设计和范式" class="headerlink" title="数据库设计和范式"></a>数据库设计和范式</h4><ul>
-<li>1NF：每一列都是不可分割的原子数据项<br>问题：1.存在非常严重的数据冗余(2NF解决)；2.数据添加存在问题(3NF解决)；3.数据删除存在问题(3NF解决)。</li>
-<li>2NF：在1NF的基础上，非码属性必须完全依赖于候选码(在1NF基础上消除非主属性对主码的部分函数依赖)</li>
-<li>3NF：在2NF的基础上，任何主属性不依赖于其他非主属性(在2NF基础上消除传递依赖)</li>
-<li>BCNF</li>
-</ul>
-<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>消除无用的数据(多表查询的分类)：</p>
-<ul>
-<li>内链接查询：<br>1.隐式内链接(where清除无用数据)<br>2.显式内链接：select 字段列表 from 表名 inner jion 表名2 on 条件：inner可省略</li>
-<li>外链接查询：<br>1.左外链接(解决右部分字段内容为空导致不查询的问题)：查询左表所有数据以及其交集部分 select 字段列表 from 表1 left [outer] jion 表2 on 条件;<br>2.右外链接</li>
-<li>子查询：查询中嵌套查询，该嵌套查询为子查询</li>
-</ul>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功，要么同时失败。 </p>
-<ul>
-<li>事务四大特征：ACID，原子性、一致性、隔离性、持久性</li>
-<li>事务的隔离级别：<ul>
-<li>问题：1.脏读 2.不可重复读(虚读) 3.幻读</li>
-<li>解决：<ul>
-<li>read uncommitted -&gt; read committed 读已提交</li>
-<li>-&gt;repeatable read 可重复读</li>
-<li>-&gt;serializable 串行化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="用户管理和权限管理"><a href="#用户管理和权限管理" class="headerlink" title="用户管理和权限管理"></a>用户管理和权限管理</h3><h4 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h4>
+<hr>
+
       
 
       
@@ -351,6 +325,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/06/03/MySQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySQL
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/29/Mybatis%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%92%8C%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
@@ -476,7 +459,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,7 +467,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
